@@ -13,7 +13,8 @@ build:
 
 prome:
 	make build
-	kubectl apply -f prometheus/prometheus-deployment.yml
+	kubectl delete -f prometheus/prometheus-deployment.yml
+	kubectl create -f prometheus/prometheus-deployment.yml
 
 hello:
 	docker build -t hello:v1 -f demo/Dockerfile .

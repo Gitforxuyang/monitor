@@ -1,12 +1,14 @@
 var http = require("http");
+const client = require('prom-client');
+const counter = new client.Counter({
+    name: 'count',
+    help: 'help'
+});
 http.createServer(function (request, response) {
-    // Send the HTTP header 
-    // HTTP Status: 200 : OK
-    // Content Type: text/plain
     response.writeHead(200, { 'Content-Type': 'text/plain' });
-    console.log('1111')
-    // Send the response body as "Hello World"
-    response.end('Hello World\n');
+    counter.inc();
+    console.log(new Date())
+    response.end(client.register.metrics());
 }).listen(8081);
 
 // Console will print the message
