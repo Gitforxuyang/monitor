@@ -20,3 +20,10 @@ hello:
 	docker build -t hello:v1 -f demo/Dockerfile .
 	kubectl delete -f demo/hello.yaml
 	kubectl create -f demo/hello.yaml
+
+gra:
+	docker build -t xy/grafana:v1 -f grafana/Dockerfile .
+	kubectl delete -f grafana/grafana.yml || true
+	kubectl create -f grafana/grafana.yml
+
+.PHONY: prome
